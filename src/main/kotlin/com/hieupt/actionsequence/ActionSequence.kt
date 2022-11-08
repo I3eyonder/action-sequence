@@ -56,10 +56,14 @@ class ActionSequence(private val coroutineScope: CoroutineScope, startNow: Boole
         actionQueue.removeAll(actions.toSet())
     }
 
-    fun removeActions(vararg actionIds: Int) {
+    fun removeActions(vararg actionIds: String) {
         actionQueue.removeAll {
             actionIds.contains(it.id)
         }
+    }
+
+    fun removeActions() {
+        actionQueue.clear()
     }
 }
 

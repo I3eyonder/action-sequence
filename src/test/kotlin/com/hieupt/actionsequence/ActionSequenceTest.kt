@@ -55,9 +55,9 @@ class ActionSequenceTest {
             }
         )
         actionSequence.addActionAtFrontQueue(
-            object : Action {
-                override val id: Int
-                    get() = 5
+            object : BaseAction() {
+                override val id: String
+                    get() = "5"
 
                 override suspend fun doAction() {
                     println("${LocalTime.now()}: Action 5 run in ${Thread.currentThread()}")
@@ -72,7 +72,7 @@ class ActionSequenceTest {
                 }
             }
         )
-        actionSequence.removeActions(5)
+        actionSequence.removeActions("5")
         delay(5000)
         actionSequence.stop()
     }
@@ -113,9 +113,7 @@ class ActionSequenceTest {
                             }
                         }
                     },
-                    object : Action {
-                        override val id: Int
-                            get() = 5
+                    object : BaseAction("Action 5") {
 
                         override suspend fun doAction() {
                             println("${LocalTime.now()}: Action 5 run in ${Thread.currentThread()}")
@@ -172,8 +170,8 @@ class ActionSequenceTest {
                 }
             },
             object : Action {
-                override val id: Int
-                    get() = 5
+                override val id: String
+                    get() = "5"
 
                 override suspend fun doAction() {
                     println("${LocalTime.now()}: Action 5 run in ${Thread.currentThread()}")
@@ -228,8 +226,8 @@ class ActionSequenceTest {
                 }
             },
             object : Action {
-                override val id: Int
-                    get() = 5
+                override val id: String
+                    get() = "5"
 
                 override suspend fun doAction() {
                     println("${LocalTime.now()}: Action 5 run in ${Thread.currentThread()}")
